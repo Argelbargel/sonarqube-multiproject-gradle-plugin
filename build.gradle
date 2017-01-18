@@ -1,0 +1,22 @@
+apply from: 'gradle/java-gradle-plugin.gradle'
+apply plugin: 'groovy'
+apply plugin: 'maven-publish'
+
+version '1.0'
+group 'argelbargel.gradle.plugins.sonarqube-multi-project-plugin'
+
+
+dependencies {
+    compile localGroovy()
+    compile 'org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.2.1'
+}
+
+
+gradlePlugin {
+    plugins {
+        sonarqubeMultiProjectPlugin {
+            id = group
+            implementationClass = 'argelbargel.gradle.plugins.sonarqube.SonarqubeMultiProjectPlugin'
+        }
+    }
+}

@@ -1,0 +1,52 @@
+apply plugin: 'java-gradle-plugin'
+apply plugin: "jacoco"
+
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+jar.enabled = true
+
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+}
+
+test {
+    workingDir buildDir
+
+    reports {
+        junitXml.enabled = true
+        html.enabled = false
+    }
+
+    jacoco {
+        excludes = ['**/test/**']
+    }
+}
+
+jacoco {
+    toolVersion = '0.7.7.201606060606'
+    reportsDir = file("$buildDir/reports/jacoco")
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        csv.enabled false
+        html.enabled false
+    }
+
+    afterEvaluate {
+        classDirectories = files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: '**/test/**')
+        })
+
+        sourceDirectories = files(sourceDirectories.files.collect {
+            fileTree(dir: it, exclude: '**/test/**')
+        })
+    }
+}
+
