@@ -4,7 +4,9 @@ jdk:
 script: ./travis.sh
 cache:
   directories:
-  - $HOME/.gradle
+  - $HOME/.gradle/caches
+  - $HOME/.gradle/native
+  - $HOME/.gradle/wrapper
 deploy:
   provider: releases
   api_key: "$GITHUB_API_TOKEN"
