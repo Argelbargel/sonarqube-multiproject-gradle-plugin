@@ -21,11 +21,12 @@ class SonarqubeMultiProjectPlugin implements Plugin<Project> {
 
         Task task = project.tasks.findByName(SonarQubeExtension.SONARQUBE_TASK_NAME)
         if (task != null) {
+            Field sonarProperties = SonarQubeTask.getDeclaredField(SONARQUBE_TASK_PROPERTIES_FIELDNAME)
+
             task.doFirst {
-                Field field = SonarQubeTask.getDeclaredField(SONARQUBE_TASK_PROPERTIES_FIELDNAME)
-                field.setAccessible(true)
-                field.set(it, SonarqubeMultiProjectPropertiesAdapter.adapt(it.properties))
-                field.setAccessible(false)
+                sonarProperties.setAccessible(true)
+                sonarProperties.set(it, SonarqubeMultiProjectPropertiesAdapter.adapt(it.properties))
+                sonarProperties.setAccessible(false)
             }
         }
     }
