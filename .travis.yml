@@ -8,7 +8,10 @@ script:
   - ./gradlew publish -Prelease=$TRAVIS_TAG
 deploy:
   provider: releases
-  api_key: "$GITHUB_API_KEY"
+  api_key: "$GITHUB_API_TOKEN"
+  skip_cleanup: true
+  on:
+    tags: true
   file:
     - "build/repo/argelbargel/gradle/plugins/sonarqube-multiproject-plugin/$TRAVIS_TAG/sonarqube-multiproject-plugin-$TRAVIS_TAG.jar"
     - "build/repo/argelbargel/gradle/plugins/sonarqube-multiproject-plugin/$TRAVIS_TAG/sonarqube-multiproject-plugin-$TRAVIS_TAG.jar.md5"
@@ -16,6 +19,3 @@ deploy:
     - "build/repo/argelbargel/gradle/plugins/sonarqube-multiproject-plugin/$TRAVIS_TAG/sonarqube-multiproject-plugin-$TRAVIS_TAG.pom"
     - "build/repo/argelbargel/gradle/plugins/sonarqube-multiproject-plugin/$TRAVIS_TAG/sonarqube-multiproject-plugin-$TRAVIS_TAG.pom.md5"
     - "build/repo/argelbargel/gradle/plugins/sonarqube-multiproject-plugin/$TRAVIS_TAG/sonarqube-multiproject-plugin-$TRAVIS_TAG.pom.sha1"
-  skip_cleanup: true
-  on:
-    tags: true
