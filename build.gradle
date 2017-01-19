@@ -2,8 +2,12 @@ apply from: 'gradle/java-gradle-plugin.gradle'
 apply plugin: 'groovy'
 apply plugin: 'maven-publish'
 
-version '1.0'
-group 'argelbargel.gradle.plugins.sonarqube-multi-project-plugin'
+
+group 'argelbargel.gradle.plugins'
+if (project.hasProperty('release') && project.getProperty('release') != '') {
+    version = project.getProperty('release')
+}
+
 
 
 dependencies {
@@ -15,8 +19,17 @@ dependencies {
 gradlePlugin {
     plugins {
         sonarqubeMultiProjectPlugin {
-            id = group
+            id = "$group.${project.name}"
             implementationClass = 'argelbargel.gradle.plugins.sonarqube.SonarqubeMultiProjectPlugin'
+        }
+    }
+}
+
+
+publishing {
+    repositories {
+        maven {
+            url "$buildDir/repo"
         }
     }
 }

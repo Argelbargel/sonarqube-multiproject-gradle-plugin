@@ -1,3 +1,20 @@
 language: java
 jdk:
   - oraclejdk8
+install: ./gradlew assemble -Prelease=${TRAVIS_TAG}
+script:
+  ./gradlew check -Prelease=${TRAVIS_TAG}
+  ./gradlew publish -Prelease=${TRAVIS_TAG}
+deploy:
+  provider: releases
+  api_key: "${GITHUB_API_KEY}"
+  file:
+    - "build\repo\argelbargel\gradle\plugins\sonarqube-multiproject-plugin\${TRAVIS_TAG}\sonarqube-multiproject-plugin-${TRAVIS_TAG}.jar"
+    - "build\repo\argelbargel\gradle\plugins\sonarqube-multiproject-plugin\${TRAVIS_TAG}\sonarqube-multiproject-plugin-${TRAVIS_TAG}.jar.md5"
+    - "build\repo\argelbargel\gradle\plugins\sonarqube-multiproject-plugin\${TRAVIS_TAG}\sonarqube-multiproject-plugin-${TRAVIS_TAG}.jar.sha1"
+    - "build\repo\argelbargel\gradle\plugins\sonarqube-multiproject-plugin\${TRAVIS_TAG}\sonarqube-multiproject-plugin-${TRAVIS_TAG}.pom"
+    - "build\repo\argelbargel\gradle\plugins\sonarqube-multiproject-plugin\${TRAVIS_TAG}\sonarqube-multiproject-plugin-${TRAVIS_TAG}.pom.md5"
+    - "build\repo\argelbargel\gradle\plugins\sonarqube-multiproject-plugin\${TRAVIS_TAG}\sonarqube-multiproject-plugin-${TRAVIS_TAG}.pom.sha1"
+  skip_cleanup: true
+  on:
+    tags: true
