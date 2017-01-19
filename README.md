@@ -23,7 +23,7 @@ buildscript {
     }
   }
   dependencies {
-    classpath "gradle.plugin.argelbargel.gradle.plugins:sonarqube-multiproject-plugin:0.2"
+    classpath "gradle.plugin.argelbargel.gradle.plugins:sonarqube-multiproject-plugin:1.0"
   }
   
   apply plugin: "argelbargel.gradle.plugins.sonarqube-multiproject-plugin"  
@@ -34,9 +34,32 @@ buildscript {
  
 ```
 plugins {
-    id "argelbargel.gradle.plugins.sonarqube-multiproject-plugin" version "0.2"
+    id "argelbargel.gradle.plugins.sonarqube-multiproject-plugin" version "1.0"
 }
 ```
+
+#### Apply the plugin via a separate, reusable script
+##### `sonarqube-multiproject.gradle`
+```
+buildscript {
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
+  }
+  dependencies {
+    classpath "gradle.plugin.argelbargel.gradle.plugins:sonarqube-multiproject-plugin:1.0"
+  }
+  
+  apply plugin: Class.forName('argelbargel.gradle.plugins.sonarqube.SonarqubeMultiProjectPlugin')
+}
+```
+##### `build.gradle`
+```
+apply from: 'sonarqube-multiproject.gradle'
+```
+
+
 
 ### 2. (Optionally) configure name of root-module
 
