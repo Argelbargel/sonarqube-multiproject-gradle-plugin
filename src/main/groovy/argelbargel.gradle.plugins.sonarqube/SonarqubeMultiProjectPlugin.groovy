@@ -5,6 +5,7 @@ import org.gradle.api.Project
 import org.gradle.api.Task
 import org.sonarqube.gradle.SonarQubeExtension
 import org.sonarqube.gradle.SonarQubePlugin
+import org.sonarqube.gradle.SonarQubeTask
 
 import java.lang.reflect.Field
 
@@ -21,7 +22,7 @@ class SonarqubeMultiProjectPlugin implements Plugin<Project> {
         Task task = project.tasks.findByName(SonarQubeExtension.SONARQUBE_TASK_NAME)
         if (task != null) {
             task.doFirst {
-                Field field = SonarQubePlugin.getDeclaredField(SONARQUBE_TASK_PROPERTIES_FIELDNAME)
+                Field field = SonarQubeTask.getDeclaredField(SONARQUBE_TASK_PROPERTIES_FIELDNAME)
                 field.setAccessible(true)
                 field.set(it, SonarqubeMultiProjectPropertiesAdapter.adapt(it.properties))
                 field.setAccessible(false)
