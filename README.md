@@ -1,0 +1,63 @@
+# SonarQube-Multi-Project-Plugin for Gradle
+
+[![Build Status](https://travis-ci.org/Argelbargel/sonarqube-multiproject-gradle-plugin.svg?branch=master)](https://travis-ci.org/Argelbargel/sonarqube-multiproject-gradle-plugin)
+
+This plugin extends the [SonarQube Scanner for Gradle](https://github.com/SonarSource/sonar-scanner-gradle) and allows you 
+to analyze multi-module builds even when the root-project has its own source-files (that is, it implements a fix for [SONARGRADL-5](https://jira.sonarsource.com/browse/SONARGRADL-5)).
+  
+See https://github.com/Argelbargel/multi-module-gradle-project-sonarqube for an example project using this plugin.  
+
+
+## Documentation
+
+### 1. Apply plugin to your project
+
+This also applies the default `sonaqube`-plugin to your project
+
+#### Using a `buildscript`-block and `apply` (supported by all Gradle-Versions)
+```
+buildscript {
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
+  }
+  dependencies {
+    classpath "gradle.plugin.argelbargel.gradle.plugins:sonarqube-multiproject-plugin:0.2"
+  }
+  
+  apply plugin: "argelbargel.gradle.plugins.sonarqube-multiproject-plugin"  
+}
+```
+
+#### Using the new plugin-mechanism
+ 
+```
+plugins {
+    id "argelbargel.gradle.plugins.sonarqube-multiproject-plugin" version "0.2"
+}
+```
+
+### 2. (Optionally) configure name of root-module
+
+The Plugin extends the default-configuration of the `sonarqube`-plugin by adding an optional 
+property for the name of the module which is created if the root-project contains its own sources.
+ 
+```
+ sonarqube {
+     properties {
+         // ... default sonar properties
+         property 'sonar.rootModuleName', 'main' 
+     }
+ }
+``` 
+
+The above configuration will create a Module "main" in your Sonarqube-Server below your project which
+contains the analysis of the source-files in the root-module.
+
+If no name is configured for the root-module, the name of the root-project will be used.
+
+### License
+
+Licensed under the [GNU Lesser General Public License, Version 3.0](http://www.gnu.org/licenses/lgpl.txt)
+
