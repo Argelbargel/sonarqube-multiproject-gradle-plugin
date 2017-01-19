@@ -1,12 +1,10 @@
 #!/usr/bin/env bash
-TAG=$1
-KEY=$2
-SECRET=$3
 
-./gradlew check -Prelease=${TAG}
+./gradlew assemble -Prelease=$TRAVIS_TAG
+./gradlew check -Prelease=${TRAVIS_TAG}
 
-if [ "$TAG" != "" ]; then
-    ./gradlew publish -Prelease=${TAG}
-    ./gradlew publishPlugins -Prelease=${TAG} -Dgradle.publish.key=${KEY} -Dgradle.publish.secret=${SECRET}
+if [ "$TRAVIS_TAG" != "" ]; then
+    ./gradlew publish -Prelease=${TRAVIS_TAG}
+    ./gradlew publishPlugins -Prelease=${TRAVIS_TAG} -Dgradle.publish.key=${GRADLE_PUBLISH_KEY} -Dgradle.publish.secret=${GRADLE_PUBLISH_SECRET}
 fi
 
