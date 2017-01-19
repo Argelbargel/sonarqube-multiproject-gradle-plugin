@@ -23,7 +23,7 @@ buildscript {
     }
   }
   dependencies {
-    classpath "gradle.plugin.argelbargel.gradle.plugins:sonarqube-multiproject-plugin:1.0"
+    classpath "gradle.plugin.argelbargel.gradle.plugins:sonarqube-multiproject-plugin:1.1"
   }
 }
 
@@ -34,7 +34,7 @@ apply plugin: "argelbargel.gradle.plugins.sonarqube-multiproject-plugin"
  
 ```
 plugins {
-    id "argelbargel.gradle.plugins.sonarqube-multiproject-plugin" version "1.0"
+    id "argelbargel.gradle.plugins.sonarqube-multiproject-plugin" version "1.1"
 }
 ```
 
@@ -48,7 +48,7 @@ buildscript {
     }
   }
   dependencies {
-    classpath "gradle.plugin.argelbargel.gradle.plugins:sonarqube-multiproject-plugin:1.0"
+    classpath "gradle.plugin.argelbargel.gradle.plugins:sonarqube-multiproject-plugin:1.1"
   }
 }
 
