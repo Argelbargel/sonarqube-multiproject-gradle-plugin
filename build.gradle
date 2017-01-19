@@ -1,13 +1,13 @@
 apply from: 'gradle/java-gradle-plugin.gradle'
 apply plugin: 'groovy'
 apply plugin: 'maven-publish'
+apply from: 'gradle/gradle-publish-plugin.gradle'
 
 
 group 'argelbargel.gradle.plugins'
 if (project.hasProperty('release') && project.getProperty('release') != '') {
     version = project.getProperty('release')
 }
-
 
 
 dependencies {
@@ -25,6 +25,19 @@ gradlePlugin {
     }
 }
 
+pluginBundle {
+    website = 'https://github.com/Argelbargel/sonarqube-multiproject-gradle-plugin'
+    vcsUrl = 'https://github.com/Argelbargel/sonarqube-multiproject-gradle-plugin'
+    description = 'Gradle-Plugin that allows project to be analyzed by sonarqube even if they contain sources as well as sub-modules'
+    tags = ['sonarqube', 'sonar', 'quality', 'qa', 'multi-project' ]
+
+    plugins {
+        sonarqubeMultiProjectPlugin {
+            id = "$group.${project.name}"
+            displayName = 'Gradle Sonarqube-MultiProject-Plugin'
+        }
+    }
+}
 
 publishing {
     repositories {

@@ -2,7 +2,7 @@ rootProject.name = 'sonarqube-multiproject-plugin'
 
 gradle.allprojects {
     repositories {
-        mavenCentral()
+        jcenter()
     }
 }
 

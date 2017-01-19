@@ -4,8 +4,7 @@ jdk:
 install:
   - ./gradlew assemble -Prelease=$TRAVIS_TAG
 script:
-  - ./gradlew check -Prelease=$TRAVIS_TAG
-  - ./gradlew publish -Prelease=$TRAVIS_TAG
+  - ./travis.sh $TRAVIS_TAG $GRADLE_PUBLISH_KEY $GRADLE_PUBLISH_SECRET
 deploy:
   provider: releases
   api_key: "$GITHUB_API_TOKEN"
