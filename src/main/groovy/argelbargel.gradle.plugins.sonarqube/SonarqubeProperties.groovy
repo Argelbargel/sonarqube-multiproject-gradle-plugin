@@ -21,7 +21,9 @@ final class SonarqubeProperties {
             'binaries', 'java.binaries', 'java.test.binaries',
             'java.source', 'java.target',
             'junit.reportsPath', 'surefire.reportsPath', 'jacoco.reportPath',
-            'test.exclusions'
+            'inclusions', 'exclusions',
+            'coverage.exclusions', 'cpd.exclusions',
+            'test.inclusions', 'test.exclusions'
     ]
 
     static String prefixedProperty(String name, String module = "") {
