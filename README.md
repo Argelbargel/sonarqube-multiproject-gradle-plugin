@@ -25,9 +25,9 @@ buildscript {
   dependencies {
     classpath "gradle.plugin.argelbargel.gradle.plugins:sonarqube-multiproject-plugin:1.0"
   }
-  
-  apply plugin: "argelbargel.gradle.plugins.sonarqube-multiproject-plugin"  
 }
+
+apply plugin: "argelbargel.gradle.plugins.sonarqube-multiproject-plugin"  
 ```
 
 #### Using the new plugin-mechanism
@@ -50,9 +50,9 @@ buildscript {
   dependencies {
     classpath "gradle.plugin.argelbargel.gradle.plugins:sonarqube-multiproject-plugin:1.0"
   }
-  
-  apply plugin: Class.forName('argelbargel.gradle.plugins.sonarqube.SonarqubeMultiProjectPlugin')
 }
+
+apply plugin: Class.forName('argelbargel.gradle.plugins.sonarqube.SonarqubeMultiProjectPlugin')
 ```
 ##### `build.gradle`
 ```
