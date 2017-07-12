@@ -1,4 +1,4 @@
-rootProject.name = 'gitlab-branch-source-plugin'
+rootProject.name = 'sonarqube-multiproject-plugin'
 
 gradle.allprojects {
     repositories {
