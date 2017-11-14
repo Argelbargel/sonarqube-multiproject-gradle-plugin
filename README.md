@@ -2,10 +2,10 @@
 
 [![Build Status](https://travis-ci.org/Argelbargel/sonarqube-multiproject-gradle-plugin.svg?branch=master)](https://travis-ci.org/Argelbargel/sonarqube-multiproject-gradle-plugin)
 
-*Since SonarQube 6.4 there is no need to use this plugin anymore*
+_*Since SonarQube 6.4 there is no need to use this plugin anymore*_
 
-This plugin extends the [SonarQube Scanner for Gradle](https://github.com/SonarSource/sonar-scanner-gradle) and allows you 
-to analyze multi-module builds even when the root-project has its own source-files (that is, it implements a fix for [SONARGRADL-5](https://jira.sonarsource.com/browse/SONARGRADL-5)).
+This plugin extends the [SonarQube Scanner for Gradle 2.5](https://github.com/SonarSource/sonar-scanner-gradle) and allows you 
+to analyze multi-module builds with SonarQube < Version 6.4 even when the root-project has its own source-files (that is, it implements a fix for [SONARGRADL-5](https://jira.sonarsource.com/browse/SONARGRADL-5)).
   
 See https://github.com/Argelbargel/multi-module-gradle-project-sonarqube for an example project using this plugin.  
 
